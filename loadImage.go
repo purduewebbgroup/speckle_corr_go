@@ -65,10 +65,10 @@ func loadImageFile(filename string) []ImagePixel {
 		log.Fatal(err)
 	}
 
-	image := make([]ImagePixel, 1392*1040)
+	image := make([]ImagePixel, 2048*2048)
 
-	if 1392*1040 != len(raw)/2 {
-		log.Fatal(1392*1040, "!=", len(raw)/2)
+	if 2048*2048 != len(raw)/2 {
+		log.Fatal(2048*2048, "!=", len(raw)/2)
 	}
 
 	// ignore the last two bytes
