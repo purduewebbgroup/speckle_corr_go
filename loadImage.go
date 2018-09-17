@@ -37,21 +37,25 @@ func GetBackground(BaseDirectory string) []ImagePixel {
 
 	backgroundFilename1 := BaseDirectory + "/background_1"
 	backgroundFilename2 := BaseDirectory + "/background_2"
+	backgroundFilename3 := BaseDirectory + "/background_3"
+	backgroundFilename4 := BaseDirectory + "/background_4"
 
-	background := LoadBackgroundImage(backgroundFilename1, backgroundFilename2)
+	background := LoadBackgroundImage(backgroundFilename1, backgroundFilename2, backgroundFilename3, backgroundFilename4)
 
 	return background
 }
 
-func LoadBackgroundImage(f1 string, f2 string) []ImagePixel {
+func LoadBackgroundImage(f1 string, f2 string, f3 string, f4 string) []ImagePixel {
 
 	image1 := loadImageFile(f1)
 	image2 := loadImageFile(f2)
+	image3 := loadImageFile(f3)
+	image4 := loadImageFile(f4)
 
-	background := make([]ImagePixel, 1392*1040)
+	background := make([]ImagePixel, 2048*2048)
 
 	for i := range image1 {
-		background[i] = (image1[i] + image2[i]) / 2
+		background[i] = (image1[i] + image2[i] + image3[i] + image4[i]) / 4
 	}
 
 	return background
@@ -76,7 +80,7 @@ func loadImageFile(filename string) []ImagePixel {
 
 	for i, v := range raw {
 
-		if i >= 1392*1040*2 {
+		if i >= 2048*2048*2 {
 			break
 		}
 
